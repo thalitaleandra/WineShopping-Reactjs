@@ -1,38 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import Header from '../../components/Header';
-import { Container, TableContainer, Card, CardContainer, Repositories } from './styles';
+import { Container, Card, CardContainer, Historics } from './styles';
 import { Link } from 'react-router-dom';
-import { variableDeclarator } from '@babel/types';
-import { FiChevronRight, FiArrowDown, FiAward } from 'react-icons/fi'
-import { MdAttachMoney } from 'react-icons/md'
+import { FiChevronRight, FiAward } from 'react-icons/fi'
 import { FaWineBottle, FaShopify } from 'react-icons/fa'
 import vinhoImg from '../../assets/vinho.jpg'
-
-interface Clients {
-  id: string;
-  nome: string;
-  cpf: string;
-
-}
-
-interface Itens {
-  produto: string,
-  variedade: string,
-  pais: string,
-  categoria: string,
-  safra: number,
-  preco: number
-}
-
-interface Shopping {
-  codigo: string,
-  data: string,
-  cliente: string,
-  itens: Array<Itens>,
-  valorTotal: number
-}
-
+import { Clients, Itens, Shopping } from '../../@types'
 
 const Dashboard: React.FC = () => {
   const [clientes, setClientes] = useState<Clients[]>([]);
@@ -155,7 +129,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </CardContainer>
         <h3 >Clientes por maior valor de Compra</h3>
-        <Repositories>
+        <Historics>
 
           {shoppings.map((valor, index) => (
             <Link key={index} to={`/repositories/${valor.data}`}>
@@ -171,7 +145,7 @@ const Dashboard: React.FC = () => {
               <FiChevronRight size={20} />
             </Link>
           ))}
-        </Repositories>
+        </Historics>
       </Container>
 
     </>
